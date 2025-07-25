@@ -1,0 +1,93 @@
+<h2 class="text-xl font-bold mb-4 text-orange-500">Gestion des Sous Comptes</h2>
+
+<!-- Formulaire création sous-compte -->
+<form (ngSubmit)="creerSousCompte()" #formSC="ngForm" class="mb-6 space-y-4">
+  <label class="block">
+    Numéro du sous-compte :
+    <input
+      type="text"
+      [(ngModel)]="nouveauSousCompte.numero"
+      name="numero"
+      required
+      placeholder="Ex : 771234567"
+      class="border rounded px-2 py-1 w-full max-w-xs"
+    />
+  </label>
+  <button
+    type="submit"
+    [disabled]="formSC.invalid"
+    class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 disabled:opacity-50"
+  >
+    Créer sous-compte
+  </button>
+</form>
+
+<!-- Solde du compte principal -->
+<p class="mb-6 font-semibold">Solde compte principal : {{ comptePrincipalMontant | number }} FCFA</p>
+
+<!-- Liste des sous comptes -->
+<table class="min-w-full bg-white rounded shadow text-sm">
+  <thead class="bg-black text-white">
+    <tr class="bg-black text-white text-left">
+      <th class="py-3 px-4">Numéro</th>
+      <th class="py-3 px-4">Montant (FCFA)</th>
+      <th class="py-3 px-4">État</th>
+      <th class="py-3 px-4">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sc of sousComptes" class="border-b">
+      <td class="py-3 px-4">{{ sc.numero }}</td>
+      <td class="py-3 px-4">{{ sc.montant | number }}</td>
+      <td class="py-3 px-4">
+        <span
+          [class.text-green-600]="!sc.bloque"
+          [class.font-bold]="!sc.bloque"
+          [class.text-red-600]="sc.bloque"
+          [class.font-bold]="sc.bloque"
+        >
+          {{ sc.bloque ? 'Bloqué' : 'Actif' }}
+        </span>
+        <span
+          *ngIf="sc.estPrincipal"
+          class="ml-2 bg-orange-500 text-white px-2 rounded text-xs font-semibold"
+          >Principal</span
+        >
+      </td>
+      <td class="py-3 px-4 space-x-2">
+        <button
+          *ngIf="!sc.bloque && !sc.estPrincipal"
+          (click)="bloquerSousCompte(sc)"
+          class="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
+          type="button"
+        >
+          Bloquer
+        </button>
+        <button
+          *ngIf="sc.bloque"
+          (click)="debloquerSousCompte(sc)"
+          class="bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700"
+          type="button"
+        >
+          Débloquer
+        </button>
+        <button
+          (click)="depotDepuisPrincipal(sc)"
+          [disabled]="sc.bloque || comptePrincipalMontant <= 0"
+          class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 disabled:opacity-50"
+          type="button"
+        >
+          Dépôt depuis compte principal
+        </button>
+        <button
+          (click)="changerEnPrincipal(sc)"
+          [disabled]="sc.bloque || sc.estPrincipal"
+          class="bg-yellow-600 text-white px-2 py-1 rounded hover:bg-yellow-700 disabled:opacity-50"
+          type="button"
+        >
+          Faire principal
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

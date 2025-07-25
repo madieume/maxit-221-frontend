@@ -1,0 +1,43 @@
+<div class="max-w-md mx-auto p-6 bg-white rounded shadow-md">
+  <h2 class="text-xl font-bold mb-6 text-center">Achat Code Woyofal (Senelec)</h2>
+
+  <form [formGroup]="paiementForm" (ngSubmit)="envoyerDemandeAchat()" class="space-y-4">
+    <label>
+      Numéro Client :
+      <input formControlName="numeroClient" type="text" class="w-full p-2 border rounded" placeholder="Ex: 77xxxxxx"/>
+    </label>
+
+    <label>
+      Montant à acheter (min 100 FCFA) :
+      <input formControlName="montant" type="number" class="w-full p-2 border rounded" />
+    </label>
+
+    <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
+      Envoyer la demande d'achat
+    </button>
+  </form>
+
+  <hr class="my-6" />
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Récupérer un achat</h3>
+    <input #codeInput type="text" placeholder="Entrez le code Woyofal" class="w-full p-2 border rounded" />
+    <button
+      (click)="recupererAchat(codeInput.value)"
+      class="mt-2 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+    >
+      Rechercher
+    </button>
+  </div>
+
+  <hr class="my-6" />
+
+  <div *ngIf="transactions.length > 0">
+    <h3 class="text-lg font-semibold mb-2">Historique des transactions</h3>
+    <ul class="list-disc list-inside">
+      <li *ngFor="let t of transactions">
+        {{ t.date }} - {{ t.montant }} FCFA - Code: {{ t.codeWoyofal }}
+      </li>
+    </ul>
+  </div>
+</div>

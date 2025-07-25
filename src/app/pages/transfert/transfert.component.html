@@ -1,54 +1,42 @@
-<div class="flex">
-  <!-- Sidebar -->
+<div class="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-md">
+  <h2 class="text-xl font-bold text-center mb-6">Effectuer un Transfert</h2>
 
-  <div class="w-full max-w-6xl bg-white rounded-lg shadow-lg p-6">
+  <form [formGroup]="transfertForm" (ngSubmit)="envoyerTransfert()">
+    <!-- Type de destinataire -->
+    <label class="block mb-3">
+      Type de compte destinataire :
+      <select formControlName="destinataireType" (change)="calculerFrais()" class="w-full mt-1 p-2 border rounded">
+        <option value="sous-compte">Sous-compte</option>
+        <option value="autre">Autre compte</option>
+      </select>
+    </label>
 
-  <!-- Contenu principal -->
-  <main class="flex-1  p-10 space-y-8">
-    <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
-      <h1 class="text-3xl font-bold text-orange-500 mb-6">Liste des transferts</h1>
+    <!-- Montant -->
+    <label class="block mb-3">
+      Montant à transférer :
+      <input type="number" formControlName="montant" (input)="calculerFrais()" min="0" class="w-full mt-1 p-2 border rounded" />
+    </label>
 
-      <table class="min-w-full border-collapse border border-gray-200">
-        <thead>
-          <tr class="bg-black text-white">
-            <th class="border border-gray-300 px-4 py-2 text-left">Montant</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Destinataire</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Date</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Statut</th>
-            <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">50 000 FCFA</td>
-            <td class="border border-gray-300 px-4 py-2">Mamadou Diallo</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-20</td>
-            <td class="border border-gray-300 px-4 py-2 text-green-600 font-semibold">Validé</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-[#EF4444] hover:bg-[#c53030] text-white font-semibold px-4 py-1 rounded">Annuler</button>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">20 000 FCFA</td>
-            <td class="border border-gray-300 px-4 py-2">Awa Ndiaye</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-21</td>
-            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-[#EF4444] hover:bg-[#c53030] text-white font-semibold px-4 py-1 rounded">Annuler</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Prise en charge des frais -->
+    <label class="inline-flex items-center mb-3">
+      <input type="checkbox" formControlName="priseEnCharge" (change)="calculerFrais()" class="mr-2" />
+      Prise en charge des frais par l'émetteur
+    </label>
+
+    <!-- Date planifiée -->
+    <label class="block mb-3">
+      Date planifiée (optionnelle) :
+      <input type="date" formControlName="datePlanifiee" class="w-full mt-1 p-2 border rounded" />
+    </label>
+
+    <!-- Résumé -->
+    <div class="mb-4 text-sm text-gray-700">
+      <p>Frais estimés : <strong>{{ frais | number:'1.2-2' }} FCFA</strong></p>
+      <p>Total débité : <strong>{{ total | number:'1.2-2' }} FCFA</strong></p>
     </div>
-     <!-- Pagination -->
-    <div class="flex justify-center items-center mt-6 space-x-2 text-sm">
-      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Précédent</button>
-      <button class="px-3 py-1 bg-orange-500 text-white rounded">1</button>
-      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">2</button>
-      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">3</button>
-      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">4</button>
-      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Suivant</button>
-    </div>
-  </main>
-</div>
+
+    <button type="submit" class="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 w-full">
+      Envoyer Transfert
+    </button>
+  </form>
 </div>

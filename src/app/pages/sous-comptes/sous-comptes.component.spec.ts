@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DepotRetraitComponent } from './depot-retrait.component';
+import { SousComptesComponent } from './sous-comptes.component';
 
-describe('DepotRetraitComponent', () => {
-  let component: DepotRetraitComponent;
-  let fixture: ComponentFixture<DepotRetraitComponent>;
+describe('SousComptesComponent', () => {
+  let component: SousComptesComponent;
+  let fixture: ComponentFixture<SousComptesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DepotRetraitComponent]
+      imports: [SousComptesComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DepotRetraitComponent);
+    fixture = TestBed.createComponent(SousComptesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
