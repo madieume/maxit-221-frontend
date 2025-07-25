@@ -1,0 +1,55 @@
+<div class="flex">
+  <!-- Sidebar -->
+  <aside class="w-64 h-screen fixed bg-black text-white px-6 py-8">
+    <h1 class="text-2xl font-bold text-orange-500 mb-10">MAX IT E221</h1>
+      <hr class="border-white mb-6" />
+    <nav class="space-y-4 text-white">
+      <a href="#" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>
+      <a routerLink="/transfert" class="block rounded bg-orange-500 px-3 py-2 mt-2">Liste des transferts</a>
+      <a href="#" class="block px-3 py-2 hover:text-orange-500">Demandes d'annulation</a>
+      <a href="#" class="block px-3 py-2 hover:text-orange-500">Gestion des comptes</a>
+      <a href="#" class="block px-3 py-2 hover:text-orange-500">Dépôt / Retrait</a>
+      <a href="#" class="block px-3 py-2 hover:text-orange-500">Achat de code</a>
+      <a routerLink="/login" class="block rounded bg-red-500 px-3 py-2">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="flex-1 p-8 ml-64">
+    <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-3xl font-bold text-orange-500 mb-6">Liste des transferts</h1>
+
+      <table class="min-w-full border-collapse border border-gray-200">
+        <thead>
+          <tr class="bg-black text-white">
+            <th class="border border-gray-300 px-4 py-2 text-left">Montant</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Destinataire</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Date</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Statut</th>
+            <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 px-4 py-2">50 000 FCFA</td>
+            <td class="border border-gray-300 px-4 py-2">Mamadou Diallo</td>
+            <td class="border border-gray-300 px-4 py-2">2025-07-20</td>
+            <td class="border border-gray-300 px-4 py-2 text-green-600 font-semibold">Validé</td>
+            <td class="border border-gray-300 px-4 py-2 text-center">
+              <button class="bg-[#EF4444] hover:bg-[#c53030] text-white font-semibold px-4 py-1 rounded">Annuler</button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border border-gray-300 px-4 py-2">20 000 FCFA</td>
+            <td class="border border-gray-300 px-4 py-2">Awa Ndiaye</td>
+            <td class="border border-gray-300 px-4 py-2">2025-07-21</td>
+            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
+            <td class="border border-gray-300 px-4 py-2 text-center">
+              <button class="bg-[#EF4444] hover:bg-[#c53030] text-white font-semibold px-4 py-1 rounded">Annuler</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
