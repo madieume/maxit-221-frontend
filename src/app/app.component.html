@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<div class="flex min-h-screen bg-gray-100">
+
+  <!-- Sidebar affiché uniquement si showSidebar est true -->
+  <aside *ngIf="showSidebar" class="w-64 h-screen fixed bg-black text-white px-6 py-8">
+    <h1 class="text-2xl font-bold text-orange-500 mb-10">MAX IT E221</h1>
+    <hr class="border-white mb-6" />
+    <nav class="space-y-4">
+      <a routerLink="/accueil" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Accueil</a>
+    <!--<a routerLink="/dashboard" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>-->
+      <a routerLink="/historique" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Historique</a>
+      <a routerLink="/transfert" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Liste des transferts</a>
+      <a routerLink="/demandes-annulation" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Demandes d'annulation</a>
+      <a routerLink="/comptes" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Gestion des comptes</a>
+      <a routerLink="/depot-retrait" routerLinkActive="text-white bg-orange-500" class="block px-3 py-2 rounded">Dépôt / Retrait</a>
+      <a routerLink="/achat-code" routerLinkActive="text-orange-500" class="block px-3 py-2 hover:text-orange-500">Achat de code</a>
+      <a routerLink="/login" class="block px-3 py-2 bg-orange-500 rounded hover:bg-orange-600">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Contenu dynamique -->
+  <main [class.ml-64]="showSidebar" class="flex-1 p-10">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

@@ -1,57 +1,49 @@
-<div class="bg-gray-100 text-gray-800 flex min-h-screen">
-  <!-- Sidebar -->
-  <aside class="w-64 fixed bg-black text-white px-6 py-8 h-full">
-    <h1 class="text-2xl font-bold text-orange-500 mb-6 border-b border-gray-700 pb-4">
-      MAX IT E221
-    </h1>
-    <nav class="space-y-4 mt-6">
-      <a routerLink="/dashboard" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>
-      <a routerLink="/transfert" class="block px-3 py-2 hover:bg-gray-800 rounded">Liste des transferts</a>
-      <a routerLink="/annulation" class="block px-3 py-2 bg-orange-500 rounded">Demandes d'annulation</a>
-      <a routerLink="/comptes" class="block px-3 py-2 hover:bg-gray-800 rounded">Gestion des comptes</a>
-      <a routerLink="/operations" class="block px-3 py-2 hover:bg-gray-800 rounded">Dépôt / Retrait</a>
-      <a routerLink="/achat-code" class="block px-3 py-2 hover:bg-gray-800 rounded">Achat de code</a>
-      <a routerLink="/login" class="block px-3 py-2 bg-red-500 hover:bg-red-600 rounded">Déconnexion</a>
-    </nav>
-  </aside>
+<div class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center justify-start py-10 px-4">
+  <!-- Conteneur principal -->
+  <div class="w-full max-w-6xl bg-white rounded-lg shadow-lg p-6">
+    <!-- Titre -->
+    <h1 class="text-3xl font-bold text-orange-500 text-center mb-8">Demandes d’annulation</h1>
 
-  <!-- Contenu principal -->
-  <main class="ml-64 flex-1 p-8">
-    <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
-      <h1 class="text-3xl font-bold text-orange-500 mb-6">Demandes d’annulation</h1>
-
-      <table class="w-full border border-gray-200 rounded overflow-hidden">
+    <!-- Tableau -->
+    <div class="overflow-x-auto">
+      <table class="w-full border border-gray-300 rounded">
         <thead>
-          <tr class="bg-black text-white text-left">
-            <th class="border border-gray-300 px-4 py-2">Motif</th>
-            <th class="border border-gray-300 px-4 py-2">Date</th>
-            <th class="border border-gray-300 px-4 py-2">Statut</th>
-            <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
+          <tr class="bg-black text-white">
+            <th class="px-4 py-2 border border-gray-300 text-left">Motif</th>
+            <th class="px-4 py-2 border border-gray-300 text-left">Date</th>
+            <th class="px-4 py-2 border border-gray-300 text-left">Statut</th>
+            <th class="px-4 py-2 border border-gray-300 text-center">Action</th>
           </tr>
         </thead>
-        <tbody class="bg-white text-sm">
+        <tbody class="text-sm bg-white">
           <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">Erreur de montant</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-20</td>
-            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-1 rounded">
-                Valider
-              </button>
+            <td class="px-4 py-2 border border-gray-300">Erreur de montant</td>
+            <td class="px-4 py-2 border border-gray-300">2025-07-20</td>
+            <td class="px-4 py-2 border border-gray-300 text-yellow-500 font-semibold">En attente</td>
+            <td class="px-4 py-2 border border-gray-300 text-center">
+              <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-1 rounded">Valider</button>
             </td>
           </tr>
           <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">Problème réseau</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-21</td>
-            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-1 rounded">
-                Valider
-              </button>
+            <td class="px-4 py-2 border border-gray-300">Problème réseau</td>
+            <td class="px-4 py-2 border border-gray-300">2025-07-21</td>
+            <td class="px-4 py-2 border border-gray-300 text-yellow-500 font-semibold">En attente</td>
+            <td class="px-4 py-2 border border-gray-300 text-center">
+              <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-1 rounded">Valider</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </main>
+
+    <!-- Pagination -->
+    <div class="flex justify-center items-center mt-6 space-x-2 text-sm">
+      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Précédent</button>
+      <button class="px-3 py-1 bg-orange-500 text-white rounded">1</button>
+      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">2</button>
+      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">3</button>
+      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">4</button>
+      <button class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Suivant</button>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,38 @@
+<main class="p-10 space-y-8 bg-gray-100 min-h-screen">
+  <h2 class="text-2xl font-bold text-orange-500">Bienvenue sur votre compte</h2>
+
+  <!-- Solde du compte -->
+  <div class="bg-black p-6 rounded shadow">
+    <h3 class="text-xl font-semibold text-white mb-2">Solde du Compte Principal</h3>
+    <p class="text-3xl text-green-600 font-bold">250 000 FCFA</p>
+  </div>
+
+  <!-- 10 dernières transactions -->
+  <div class="bg-white p-6 rounded shadow">
+    <h3 class="text-xl font-semibold mb-4 text-orange-500">10 dernières transactions</h3>
+    <table class="min-w-full text-sm">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="py-2 px-4 text-left">Date</th>
+          <th class="py-2 px-4 text-left">Type</th>
+          <th class="py-2 px-4 text-left">Montant</th>
+          <th class="py-2 px-4 text-left">Statut</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <tr class="border-b" *ngFor="let tx of transactions">
+          <td class="py-2 px-4">23/07/2025</td>
+          <td class="py-2 px-4">Dépôt</td>
+          <td class="py-2 px-4 text-green-600">+50 000 FCFA</td>
+          <td class="py-2 px-4">Réussi</td>
+        </tr>
+        <!-- Répète pour les 10 transactions -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Lien vers historique -->
+  <div>
+    <a href="/historique" class="text-blue-600 underline">Voir tout l’historique des transactions</a>
+  </div>
+</main>

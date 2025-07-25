@@ -1,59 +1,53 @@
 <div class="flex min-h-screen bg-gray-100">
 
   <!-- Sidebar -->
-  <aside class="w-64 h-screen fixed bg-black text-white px-6 py-8">
-    <h1 class="text-2xl font-bold text-orange-500 mb-10">MAX IT E221</h1>
-    <nav class="space-y-4">
-      <a routerLink="/dashboard" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>
-      <a routerLink="/transfert" class="block px-3 py-2 hover:text-orange-500">Liste des transferts</a>
-      <a routerLink="/annulation" class="block px-3 py-2 hover:text-orange-500">Demandes d'annulation</a>
-      <a routerLink="/comptes" class="block px-3 py-2 hover:text-orange-500">Gestion des comptes</a>
-      <a routerLink="/depot-retrait" class="block px-3 py-2 hover:text-orange-500">Dépôt / Retrait</a>
-      <a routerLink="/achat-code" class="block px-3 py-2 bg-orange-500 rounded hover:text-white">Achat de code</a>
-      <a routerLink="/login" class="block px-3 py-2 bg-red-500 rounded hover:bg-red-600">Déconnexion</a>
-    </nav>
-  </aside>
+
 
   <!-- Contenu principal -->
-  <main class="ml-64 p-8 max-w-md">
-    <h2 class="text-3xl font-bold mb-6 text-orange-500">Achat de code</h2>
+  <main class="flex-1 p-10 space-y-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6">
+      <h2 class="text-xl font-bold mb-6 text-orange-500">Achat de code</h2>
 
-    <form class="bg-white p-6 rounded-lg shadow space-y-6">
+      <form class="space-y-6">
+        <!-- Montant -->
+        <div>
+          <label for="montant" class="block font-semibold mb-1">Montant</label>
+          <input
+            type="number"
+            id="montant"
+            name="montant"
+            placeholder="Entrez le montant"
+            required
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
 
-  <div>
-    <label for="montant" class="block mb-2 font-semibold">Montant</label>
-    <input
-      type="number"
-      id="montant"
-      name="montant"
-      placeholder="Entrez le montant"
-      required
-      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-    />
-  </div>
+        <!-- Type de code -->
+        <div>
+          <label for="typeCode" class="block font-semibold mb-1">Type de code</label>
+          <select
+            id="typeCode"
+            name="typeCode"
+            required
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            <option value="" disabled selected>Sélectionnez un type</option>
+            <option value="wave">Wave</option>
+            <option value="orangeMoney">Orange Money</option>
+            <option value="freeMoney">Free Money</option>
+          </select>
+        </div>
 
-  <div>
-    <label for="typeCode" class="block mb-2 font-semibold">Type de code</label>
-    <select
-      id="typeCode"
-      name="typeCode"
-      required
-      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-    >
-      <option value="" disabled selected> Sélectionnez un type</option>
-      <option value="helloWorld">Wave</option>
-      <option value="orangeMoney">Orange Money</option>
-      <option value="option2">Free Money</option>
-    </select>
-  </div>
-
-  <button type="submit"
-          class="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition">
-    Acheter
-  </button>
-
-</form>
-
+        <!-- Bouton -->
+        <div>
+          <button
+            type="submit"
+            class="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition"
+          >
+            Acheter
+          </button>
+        </div>
+      </form>
+    </div>
   </main>
-
 </div>
