@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule, DecimalPipe } from '@angular/common';  // <-- importe DecimalPipe ici
+import { CommonModule, DecimalPipe } from '@angular/common';  
 
 @Component({
   selector: 'app-annulation-transfert',
   standalone: true,
-  imports: [CommonModule, DecimalPipe],  // <-- ajoute DecimalPipe ici
+  imports: [CommonModule, DecimalPipe],  
   templateUrl: './annulation-transfert.component.html',
 })
 export class AnnulationTransfertComponent implements OnInit {

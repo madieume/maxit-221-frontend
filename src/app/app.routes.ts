@@ -6,7 +6,6 @@ import { DemandeAnnulationComponent } from './pages/demandes-annulation/demandes
 import { GestionComptesComponent } from './pages/gestion-comptes/gestion-comptes.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { HistoriqueComponent } from './pages/historique/historique.component';
-//import { SousCompteDetailComponent } from './pages/sous-compte-detail/sous-compte-detail.component';
 import { HistoriqueTransfertsComponent } from './pages/historique-transferts/historique-transferts.component';
 import { PaiementComponent } from './pages/paiement/paiement.component';
 import { DetailCompteComponent } from './pages/details/details.component';
@@ -20,12 +19,13 @@ import { NouvelleTransactionComponent } from './pages/nouvelle-transaction/nouve
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-{ path: 'transfert/:id', component: TransfertComponent },
+  { path: 'transfert/:id', component: TransfertComponent },
+  { path: 'transfert', component: TransfertComponent },
+  { path: 'demandes-annulation', component: DemandeAnnulationComponent },
   { path: 'demandes-annulation', component: DemandeAnnulationComponent },
   { path: 'comptes', component: GestionComptesComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'historique', component: HistoriqueComponent },
-  //{ path: 'sous-compte-detail', component: SousCompteDetailComponent },
   { path: 'historique-transferts', component: HistoriqueTransfertsComponent },  
   { path: 'paiement', component: PaiementComponent },
   { path: 'details/:id', component: DetailCompteComponent }, 
