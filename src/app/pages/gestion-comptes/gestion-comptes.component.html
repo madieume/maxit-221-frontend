@@ -1,74 +1,47 @@
-<div class="flex bg-gray-100 text-gray-800">
-  <!-- Sidebar -->
-  <aside class="w-64 h-screen fixed bg-black text-white px-6 py-8">
-    <h1 class="text-2xl font-bold text-orange-500 mb-10">MAX IT E221</h1>
-    <nav class="space-y-4">
-      <a routerLink="/dashboard" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>
-      <a routerLink="/transfert" class="block px-3 py-2 hover:text-orange-500">Liste des transferts</a>
-      <a routerLink="/annulation" class="block px-3 py-2 hover:text-orange-500">Demandes d'annulation</a>
-      <a routerLink="/comptes" class="block px-3 py-2 bg-orange-500 rounded">Gestion des comptes</a>
-      <a routerLink="/operations" class="block px-3 py-2 hover:text-orange-500">Dépôt / Retrait</a>
-      <a routerLink="/achat-code" class="block px-3 py-2 hover:text-orange-500">Achat de code</a>
-      <a routerLink="/login" class="block px-3 py-2 bg-red-500 rounded hover:bg-red-600">Déconnexion</a>
-    </nav>
-  </aside>
+<div class="flex justify-between items-center mb-4">
+  <h1 class="text-3xl font-bold text-orange-500">Liste des comptes</h1>
 
-  <!-- Main Content -->
-  <main class="ml-64 flex-1 p-10">
-    <h2 class="text-2xl font-bold mb-6 text-orange-500">Gestion des Comptes</h2>
-
-    <div class="overflow-x-auto">
-      <table class="min-w-full bg-white rounded shadow">
-        <thead>
-          <tr class="bg-black text-white text-left">
-            <th class="py-3 px-4">Nom du compte</th>
-            <th class="py-3 px-4">Statut</th>
-            <th class="py-3 px-4">Action</th>
-          </tr>
-        </thead>
-        <tbody class="text-sm">
-          <tr class="border-b">
-            <td class="py-3 px-4 font-semibold">Compte principal A</td>
-            <td class="py-3 px-4 flex items-center space-x-2 text-green-600 font-bold">✅ <span>Actif</span></td>
-            <td class="py-3 px-4 space-x-2">
-              <button class="text-green-600 text-lg font-bold" title="Débloquer">✅ Débloquer</button>
-            </td>
-          </tr>
-          <tr class="border-b">
-            <td class="py-3 px-4 font-semibold">Compte principal B</td>
-            <td class="py-3 px-4 flex items-center space-x-2 text-red-600 font-bold">⛔ <span>Bloqué</span></td>
-            <td class="py-3 px-4 space-x-2">
-              <button class="text-red-600 text-lg font-bold" title="Bloquer">🔴 Bloquer</button>
-            </td>
-          </tr>
-          <tr class="border-b">
-            <td class="py-3 px-4 font-semibold">Compte principal C</td>
-            <td class="py-3 px-4 flex items-center space-x-2 text-green-600 font-bold">✅ <span>Actif</span></td>
-            <td class="py-3 px-4 space-x-2">
-              <button class="text-green-600 text-lg font-bold" title="Débloquer">✅ Débloquer</button>
-            </td>
-          </tr>
-          <tr class="border-b">
-            <td class="py-3 px-4 font-semibold">Compte principal D</td>
-            <td class="py-3 px-4 flex items-center space-x-2 text-red-600 font-bold">⛔ <span>Bloqué</span></td>
-            <td class="py-3 px-4 space-x-2">
-              <button class="text-red-600 text-lg font-bold" title="Bloquer">🔴 Bloquer</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="flex space-x-4 items-center">
+    <div>
+      <label for="etatFiltre" class="mr-2 font-medium">Filtrer par état :</label>
+      <select id="etatFiltre"
+              [(ngModel)]="etatSelectionne"
+              (change)="filtrerParEtat()"
+              class="border border-gray-300 rounded px-3 py-2">
+        <option value="">Tous</option>
+        <option value="Actif">Actif</option>
+        <option value="Bloquer">Bloquer</option>
+      </select>
     </div>
 
-    <!-- Pagination -->
-    <div class="flex justify-between items-center mt-6 text-sm text-gray-600">
-      <div class="space-x-1">
-        <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">Précédent</button>
-        <button class="px-2 py-1 bg-orange-500 text-white rounded">1</button>
-        <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">2</button>
-        <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">3</button>
-        <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">4</button>
-        <button class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">Suivant</button>
-      </div>
-    </div>
-  </main>
+    <button class="bg-orange-500 text-white font-bold px-4 py-2 rounded"
+            routerLink="/register">
+      Créer un compte
+    </button>
+  </div>
 </div>
+
+
+ <table class="min-w-full bg-white rounded shadow text-sm">
+    <thead class="bg-black text-white">
+       <tr class="bg-black text-white text-left">
+      <th class="py-3 px-4">Numéro</th>
+      <th class="py-3 px-4">Montant</th>
+      <th class="py-3 px-4">État</th>
+      <th class="py-3 px-4">Action</th>
+    </tr>
+  </thead>
+  <tbody class="text-gray-800">
+    <tr *ngFor="let compte of comptes" class="border-b">
+      <td class="py-3 px-4">{{ compte.numero }}</td>
+      <td class="py-3 px-4">{{ compte.montant | number:'1.0-0' }} FCFA</td>
+      <td class="py-3 px-4">{{ compte.etat }}</td>
+      <td>
+        <button (click)="voirDetail(compte.id)" >
+          
+          👁️ 
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

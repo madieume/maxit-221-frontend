@@ -1,0 +1,46 @@
+<main class="p-10 space-y-8 bg-gray-100 min-h-screen">
+  <h2 class="text-2xl font-bold text-orange-500">Bienvenue sur votre compte</h2>
+
+  <!-- Solde du compte -->
+  <div class="bg-black p-6 rounded shadow">
+    <h3 class="text-xl font-semibold text-white mb-2">Solde du Compte Principal</h3>
+    <p class="text-3xl text-white font-bold">250 000 FCFA</p>
+  </div>
+
+  <!-- 10 dernières transactions -->
+  <div class="bg-white p-6 rounded shadow">
+    <h3 class="text-xl font-semibold mb-4 text-orange-500">10 dernières transactions</h3>
+    <table class="min-w-full rounded-lg overflow-hidden">
+  <thead class="bg-black text-white">
+    <tr>
+      <th class="py-2 px-4 text-left">Date</th>
+      <th class="py-2 px-4 text-left">Type</th>
+      <th class="py-2 px-4 text-left">Montant</th>
+      <th class="py-2 px-4 text-left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tx of transactions" class="border-b hover:bg-gray-100">
+      <td class="py-2 px-4">{{ tx.date }}</td>
+      <td class="py-2 px-4">{{ tx.type }}</td>
+      <td 
+        class="py-2 px-4"
+        [ngClass]="{
+          'text-green-600': tx.montant.startsWith('+'),
+          'text-red-600': tx.montant.startsWith('-')
+        }"
+      >
+        {{ tx.montant }}
+      </td>
+      <td class="py-2 px-4">{{ tx.description }}</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+
+  <!-- Lien vers historique -->
+  <div>
+    <a href="/historique" class="text-blue-600 underline">Voir la liste des transactions</a>
+  </div>
+</main>

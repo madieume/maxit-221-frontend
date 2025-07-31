@@ -1,0 +1,50 @@
+<main class="p-10 bg-gray-100 min-h-screen">
+  <h2 class="text-2xl font-bold text-orange-500 mb-6">Liste des Transactions</h2>
+
+  <!-- Filtres -->
+  <div class="mb-6">
+    <label for="filtreType" class="mr-2 font-medium">Filtrer par type :</label>
+    <select id="filtreType"
+            [(ngModel)]="filtreType"
+            class="px-4 py-2 rounded border border-gray-300">
+      <option value="">Tous</option>
+      <option value="Dépôt">Dépôt</option>
+      <option value="Retrait">Retrait</option>
+      <option value="Transfert">Transfert</option>
+      <option value="Paiement">Paiement</option>
+      <option value="Achat">Achat</option>
+    </select>
+  </div>
+
+  <!-- Tableau -->
+  <table class="min-w-full bg-white rounded shadow text-sm">
+    <thead class="bg-black text-white">
+      <tr class="text-left">
+        <th class="py-3 px-4">Date</th>
+        <th class="py-3 px-4">Type</th>
+        <th class="py-3 px-4">Montant</th>
+        <th class="py-3 px-4">Description</th>
+        <th class="py-3 px-4">Action</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-800">
+      <tr *ngFor="let t of transactionsFiltrees()" class="border-b">
+        <td class="py-3 px-4">{{ t.date }}</td>
+        <td class="py-3 px-4">{{ t.type }}</td>
+        <td class="py-3 px-4" [ngClass]="{'text-green-600': t.montant > 0, 'text-red-600': t.montant < 0}">
+          {{ t.montant | number:'1.0-0' }} FCFA
+        </td>
+        <td class="py-3 px-4">{{ t.description }}</td>
+  <td class="py-3 px-4">
+  <a
+    [routerLink]="['/nouvelle-transaction', t.id]"
+    class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded inline-block text-center"
+  >
+    nouvelle transaction
+  </a>
+</td>
+
+      </tr>
+    </tbody>
+  </table>
+</main>

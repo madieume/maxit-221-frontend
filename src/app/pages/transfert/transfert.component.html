@@ -1,55 +1,49 @@
-<div class="flex">
-  <!-- Sidebar -->
-  <aside class="w-64 h-screen fixed bg-black text-white px-6 py-8">
-    <h1 class="text-2xl font-bold text-orange-500 mb-10">MAX IT E221</h1>
-      <hr class="border-white mb-6" />
-    <nav class="space-y-4 text-white">
-      <a href="#" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>
-      <a routerLink="/transfert" class="block rounded bg-orange-500 px-3 py-2 mt-2">Liste des transferts</a>
-      <a href="#" class="block px-3 py-2 hover:text-orange-500">Demandes d'annulation</a>
-      <a href="#" class="block px-3 py-2 hover:text-orange-500">Gestion des comptes</a>
-      <a href="#" class="block px-3 py-2 hover:text-orange-500">Dépôt / Retrait</a>
-      <a href="#" class="block px-3 py-2 hover:text-orange-500">Achat de code</a>
-      <a routerLink="/login" class="block rounded bg-red-500 px-3 py-2">Déconnexion</a>
-    </nav>
-  </aside>
+<div class="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-md">
+  <h2 class="text-xl font-bold text-center mb-6 text-orange-500">Effectuer un Transfert</h2>
 
-  <!-- Contenu principal -->
-  <main class="flex-1 p-8 ml-64">
-    <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
-      <h1 class="text-3xl font-bold text-orange-500 mb-6">Liste des transferts</h1>
+  <form [formGroup]="transfertForm" (ngSubmit)="envoyerTransfert()">
+    <!-- Type de compte destinataire -->
+    <label class="block mb-3">
+      Type de compte destinataire :
+      <select formControlName="destinataireType" (change)="calculerFrais()" class="w-full mt-1 p-2 border rounded">
+        <option value="sous-compte">Sous-compte</option>
+        <option value="compte-principal">Compte principal</option>
+        <option value="autre">Autre compte</option>
+      </select>
+    </label>
 
-      <table class="min-w-full border-collapse border border-gray-200">
-        <thead>
-          <tr class="bg-black text-white">
-            <th class="border border-gray-300 px-4 py-2 text-left">Montant</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Destinataire</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Date</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Statut</th>
-            <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">50 000 FCFA</td>
-            <td class="border border-gray-300 px-4 py-2">Mamadou Diallo</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-20</td>
-            <td class="border border-gray-300 px-4 py-2 text-green-600 font-semibold">Validé</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-[#EF4444] hover:bg-[#c53030] text-white font-semibold px-4 py-1 rounded">Annuler</button>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">20 000 FCFA</td>
-            <td class="border border-gray-300 px-4 py-2">Awa Ndiaye</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-21</td>
-            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-[#EF4444] hover:bg-[#c53030] text-white font-semibold px-4 py-1 rounded">Annuler</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Numéro du client (toujours affiché) -->
+    <label class="block mb-3">
+      Numéro du client :
+      <input type="text" formControlName="numeroClient" class="w-full mt-1 p-2 border rounded" />
+    </label>
+
+    <!-- Montant -->
+    <label class="block mb-3">
+      Montant à transférer :
+      <input type="number" formControlName="montant" (input)="calculerFrais()" min="0" class="w-full mt-1 p-2 border rounded" />
+    </label>
+
+    <!-- Prise en charge des frais (pas pour compte-principal) -->
+    <label class="inline-flex items-center mb-3" *ngIf="transfertForm.value.destinataireType !== 'compte-principal'">
+      <input type="checkbox" formControlName="priseEnCharge" (change)="calculerFrais()" class="mr-2" />
+      Prise en charge des frais par l'émetteur
+    </label>
+
+    <!-- Date planifiée (pas pour compte-principal) -->
+    <label class="block mb-3" *ngIf="transfertForm.value.destinataireType !== 'compte-principal'">
+      Date planifiée (optionnelle) :
+      <input type="date" formControlName="datePlanifiee" class="w-full mt-1 p-2 border rounded" />
+    </label>
+
+    <!-- Résumé -->
+    <div class="mb-4 text-sm text-gray-700">
+      <p>Frais estimés : <strong>{{ frais | number:'1.2-2' }} FCFA</strong></p>
+      <p>Total débité : <strong>{{ total | number:'1.2-2' }} FCFA</strong></p>
     </div>
-  </main>
+
+    <button type="submit" class="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 w-full">
+     Transferer
+    </button>
+  </form>
 </div>

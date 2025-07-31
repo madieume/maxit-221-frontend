@@ -2,11 +2,16 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { TransfertComponent } from './pages/transfert/transfert.component';
-import { DemandesAnnulationComponent } from './pages/demandes-annulation/demandes-annulation.component';
+import { DemandeAnnulationComponent } from './pages/demandes-annulation/demandes-annulation.component';
 import { GestionComptesComponent } from './pages/gestion-comptes/gestion-comptes.component';
-import { DepotRetraitComponent } from './pages/depot-retrait/depot-retrait.component';
-import { AchatCodeComponent } from './pages/achat-code/achat-code.component';
-
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { HistoriqueComponent } from './pages/historique/historique.component';
+//import { SousCompteDetailComponent } from './pages/sous-compte-detail/sous-compte-detail.component';
+import { HistoriqueTransfertsComponent } from './pages/historique-transferts/historique-transferts.component';
+import { PaiementComponent } from './pages/paiement/paiement.component';
+import { DetailCompteComponent } from './pages/details/details.component';
+import { AnnulationTransfertComponent } from './pages/annulation-transfert/annulation-transfert.component';
+import { NouvelleTransactionComponent } from './pages/nouvelle-transaction/nouvelle-transaction.component';
 
 
 
@@ -15,12 +20,17 @@ import { AchatCodeComponent } from './pages/achat-code/achat-code.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'transfert', component: TransfertComponent },
-  { path: 'demandes-annulation', component: DemandesAnnulationComponent },
+{ path: 'transfert/:id', component: TransfertComponent },
+  { path: 'demandes-annulation', component: DemandeAnnulationComponent },
   { path: 'comptes', component: GestionComptesComponent },
-  { path: 'depot-retrait', component: DepotRetraitComponent },
-  { path: 'achat-code', component: AchatCodeComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'historique', component: HistoriqueComponent },
+  //{ path: 'sous-compte-detail', component: SousCompteDetailComponent },
+  { path: 'historique-transferts', component: HistoriqueTransfertsComponent },  
+  { path: 'paiement', component: PaiementComponent },
+  { path: 'details/:id', component: DetailCompteComponent }, 
+  { path: 'annulation-transfert/:id', component: AnnulationTransfertComponent },
+{ path: 'nouvelle-transaction/:id', component: NouvelleTransactionComponent },
 
-
-  //{ path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

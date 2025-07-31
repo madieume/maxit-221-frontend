@@ -1,0 +1,66 @@
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white shadow rounded">
+  <h2 class="text-2xl font-bold mb-6 text-center text-orange-500">Nouvelle Transaction</h2>
+
+  <form (ngSubmit)="enregistrerTransaction()" #form="ngForm">
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Type de transaction</label>
+      <select
+        [(ngModel)]="transaction.type"
+        name="type"
+        required
+        class="w-full border border-gray-300 px-3 py-2 rounded"
+        aria-label="Sélectionner le type de transaction"
+      >
+        <option value="">-- Choisir un type --</option>
+        <option value="depot">Dépôt</option>
+        <option value="retrait">Retrait</option>
+        <option value="retrait">Transfert</option>
+        <option value="retrait">Paiement</option>
+        <option value="retrait">Achat</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Montant</label>
+      <input
+        type="number"
+        [(ngModel)]="transaction.montant"
+        name="montant"
+        required
+        min="1"
+        class="w-full border border-gray-300 px-3 py-2 rounded"
+        placeholder="Ex: 10000"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Description</label>
+      <input
+        type="text"
+        [(ngModel)]="transaction.description"
+        name="description"
+        class="w-full border border-gray-300 px-3 py-2 rounded"
+        placeholder="Ex: Dépôt via mobile money"
+      />
+    </div>
+
+     <div class="mb-4">
+      <label class="block mb-1 font-semibold">Date</label>
+      <input
+        type="date"
+        [(ngModel)]="transaction.description"
+        name="date"
+        class="w-full border border-gray-300 px-3 py-2 rounded"
+        placeholder="choisir une date"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-orange-500 text-white font-bold py-2 rounded hover:bg-orange-600"
+      [disabled]="form.invalid"
+    >
+      Enregistrer
+    </button>
+  </form>
+</div>

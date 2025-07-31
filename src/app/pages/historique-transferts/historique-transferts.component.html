@@ -1,0 +1,48 @@
+<div class="p-8 bg-gray-100 min-h-screen max-w-4xl mx-auto">
+  <h2 class="text-2xl font-bold text-orange-500 mb-6">Liste des Transferts</h2>
+
+  <div class="mb-4">
+    <label for="filtreType" class="font-semibold mr-2">Filtrer par type :</label>
+    <select id="filtreType" [(ngModel)]="filtreType" class="p-2 border rounded">
+      <option value="">Tous</option>
+      <option value="sous-compte">Sous-compte</option>
+      <option value="autre">Autre compte</option>
+    </select>
+  </div>
+
+  <table class="min-w-full bg-white rounded shadow text-sm">
+    <thead class="bg-black text-white">
+      <tr class="bg-black text-white text-left">
+        <th class="py-3 px-4">ID</th>
+        <th class="py-3 px-4">Date</th>
+        <th class="py-3 px-4">Montant</th>
+        <th class="py-3 px-4">Destinataire</th>
+        <th class="py-3 px-4">Type</th>
+        <th class="py-3 px-4">Statut</th>
+        <th class="py-3 px-4">Action</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-800">
+      <tr *ngFor="let t of transfertsFiltres" class="border-b">
+        <td class="py-3 px-4">{{ t.id }}</td>
+        <td class="py-3 px-4">{{ t.date }}</td>
+        <td class="py-3 px-4">{{ t.montant | number }} FCFA</td>
+        <td class="py-3 px-4">{{ t.destinataire }}</td>
+        <td class="py-3 px-4">{{ t.type }}</td>
+        <td class="py-3 px-4">
+          <span [class.text-green-600]="t.statut === 'Effectué'" [class.text-red-600]="t.statut === 'Annulé'"
+            [class.text-yellow-600]="t.statut === 'En attente d\'annulation'">
+            {{ t.statut }}
+          </span>
+        </td>
+        <td class="py-3 px-4">
+          <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded"
+            (click)="allerEffectuerTransfert(t.id)">
+            Effectuer transfert
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

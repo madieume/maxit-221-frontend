@@ -1,0 +1,20 @@
+<div class="p-8 bg-white rounded shadow max-w-xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6">Traitement de la demande d'annulation</h2>
+
+  <p><strong>ID :</strong> {{ transfertDetails.id }}</p>
+  <p><strong>Date :</strong> {{ transfertDetails.date }}</p>
+  <p><strong>Montant :</strong> {{ transfertDetails.montant | number }} FCFA</p>
+  <p><strong>Émetteur :</strong> {{ transfertDetails.emetteur }}</p>
+  <p><strong>Récepteur :</strong> {{ transfertDetails.recepteur }}</p>
+  <p><strong>Statut :</strong> {{ transfertDetails.statut }}</p>
+  <p><strong>Frais :</strong> {{ transfertDetails.frais | number }} FCFA</p>
+
+  <div class="mt-6 flex gap-4">
+    <button (click)="validerAnnulation()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+      Valider 
+    </button>
+    <button (click)="refuserAnnulation()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+      Refuser
+    </button>
+  </div>
+</div>

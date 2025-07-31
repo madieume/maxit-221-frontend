@@ -1,57 +1,38 @@
-<div class="bg-gray-100 text-gray-800 flex min-h-screen">
-  <!-- Sidebar -->
-  <aside class="w-64 fixed bg-black text-white px-6 py-8 h-full">
-    <h1 class="text-2xl font-bold text-orange-500 mb-6 border-b border-gray-700 pb-4">
-      MAX IT E221
-    </h1>
-    <nav class="space-y-4 mt-6">
-      <a routerLink="/dashboard" class="block px-3 py-2 hover:text-orange-500">Tableau de bord</a>
-      <a routerLink="/transfert" class="block px-3 py-2 hover:bg-gray-800 rounded">Liste des transferts</a>
-      <a routerLink="/annulation" class="block px-3 py-2 bg-orange-500 rounded">Demandes d'annulation</a>
-      <a routerLink="/comptes" class="block px-3 py-2 hover:bg-gray-800 rounded">Gestion des comptes</a>
-      <a routerLink="/operations" class="block px-3 py-2 hover:bg-gray-800 rounded">Dépôt / Retrait</a>
-      <a routerLink="/achat-code" class="block px-3 py-2 hover:bg-gray-800 rounded">Achat de code</a>
-      <a routerLink="/login" class="block px-3 py-2 bg-red-500 hover:bg-red-600 rounded">Déconnexion</a>
-    </nav>
-  </aside>
+<div class="p-8 bg-gray-100 min-h-screen">
+  <h2 class="text-2xl font-bold text-orange-500 mb-6">Demandes d'annulation de transferts</h2>
 
-  <!-- Contenu principal -->
-  <main class="ml-64 flex-1 p-8">
-    <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
-      <h1 class="text-3xl font-bold text-orange-500 mb-6">Demandes d’annulation</h1>
-
-      <table class="w-full border border-gray-200 rounded overflow-hidden">
-        <thead>
-          <tr class="bg-black text-white text-left">
-            <th class="border border-gray-300 px-4 py-2">Motif</th>
-            <th class="border border-gray-300 px-4 py-2">Date</th>
-            <th class="border border-gray-300 px-4 py-2">Statut</th>
-            <th class="border border-gray-300 px-4 py-2 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody class="bg-white text-sm">
-          <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">Erreur de montant</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-20</td>
-            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-1 rounded">
-                Valider
-              </button>
-            </td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2">Problème réseau</td>
-            <td class="border border-gray-300 px-4 py-2">2025-07-21</td>
-            <td class="border border-gray-300 px-4 py-2 text-yellow-500 font-semibold">En attente</td>
-            <td class="border border-gray-300 px-4 py-2 text-center">
-              <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-1 rounded">
-                Valider
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
+  <table class="min-w-full bg-white rounded shadow text-sm">
+    <thead class="bg-black text-white">
+      <tr class="text-left">
+        <th class="py-3 px-4">ID</th>
+        <th class="py-3 px-4">Date</th>
+        <th class="py-3 px-4">Montant</th>
+        <th class="py-3 px-4">Destinataire</th>
+        <th class="py-3 px-4">Statut</th>
+        <th class="py-3 px-4">Action</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-800">
+      <tr *ngFor="let t of transferts" class="border-b">
+        <td class="py-3 px-4">{{ t.id }}</td>
+        <td class="py-3 px-4">{{ t.date }}</td>
+        <td class="py-3 px-4">{{ t.montant | number:'1.0-0' }} FCFA</td>
+        <td class="py-3 px-4">{{ t.destinataire }}</td>
+        <td class="py-3 px-4">
+          <span
+            [ngClass]="{
+              'text-green-600': t.statut === 'Effectué',
+              'text-red-600': t.statut === 'Annulé',
+              'text-yellow-600': t.statut === 'En attente d\'annulation'
+            }">
+            {{ t.statut }}
+          </span>
+        </td>
+        <td class="py-3 px-4">  
+          <a [routerLink]="['/annulation-transfert', t.id]">Voir la demande</a>
+          <span *ngIf="t.statut !== 'Effectué'" class="text-gray-500 italic"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,0 +1,54 @@
+<div class="flex gap-4 p-4">
+  <!-- Partie gauche : Infos et Statistiques -->
+  <div class="w-1/2">
+    <!-- Informations du compte -->
+    <div class="bg-white  rounded shadow">
+      <h2 class="text-lg font-bold mb-4">Informations du compte</h2>
+      <p><strong>Nom :</strong> {{ compte.nom }}</p>
+      <p><strong>Prénom :</strong> {{ compte.prenom }}</p>
+      <p><strong>Téléphone :</strong> {{ compte.tel }}</p>
+      <p><strong>NCI :</strong> {{ compte.nci }}</p>
+      <p><strong>Adresse :</strong> {{ compte.adresse }}</p>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="bg-white p-4 rounded shadow mt-32">
+      <h2 class="text-lg font-bold mb-4">Statistiques</h2>
+      <p>Total transactions : 12</p>
+      <p>Total envoyé : 250 000 FCFA</p>
+      <p>Total reçu : 150 000 FCFA</p>
+    </div>
+  </div>
+
+
+  <!-- Partie droite : Formulaire de sous-compte -->
+  <div class="w-1/2 bg-white p-6 rounded shadow space-y-4">
+    <h2 class="text-xl font-bold mb-4 ">Gérer les Sous-Comptes</h2>
+
+    <!-- Créer un sous-compte -->
+    <button class="border border-gray-300 text-gray-800 hover:bg-gray-100 px-4 py-2 rounded w-full text-left"
+      (click)="creerSousCompte()">
+      ➕ Créer un compte Sous Compte
+    </button>
+
+    <!-- Bloquer un sous-compte -->
+    <button class="border border-gray-300 text-gray-800 hover:bg-gray-100 px-4 py-2 rounded w-full text-left"
+      (click)="bloquerSousCompte()">
+      ⛔ Bloquer un Sous Compte
+    </button>
+
+    <!-- Changer un sous-compte en principal -->
+    <button class="border border-gray-300 text-gray-800 hover:bg-gray-100 px-4 py-2 rounded w-full text-left"
+      (click)="changerEnPrincipal()">
+      🔁 Changer un Sous Compte en Principal
+    </button>
+
+  
+
+      <button class="bg-orange-500 text-white hover:bg-orange-600px-4 py-2 rounded w-full">
+        Enregistrer
+      </button>
+   
+  </div>
+
+</div>
